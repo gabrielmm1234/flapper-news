@@ -12,9 +12,16 @@ angular.module('flapperNews')
 
 	    o.getAll = function() {
     		return $http.get('/posts.json').success(function(data){
-  			angular.copy(data, o.posts);
-		});
-  	};
+  				angular.copy(data, o.posts);
+			});
+		};
+
+		o.upvote = function(post) {
+  			return $http.put('/posts/' + post.id + '/upvote.json')
+    			.success(function(data){
+      				post.upvotes += 1;
+    		});
+		};
 
 	return o;
 }]);
