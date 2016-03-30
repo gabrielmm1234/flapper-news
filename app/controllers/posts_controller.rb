@@ -19,6 +19,12 @@ class PostsController < ApplicationController
 		respond_with post
 	end
 
+	protected
+
+		def verified_request?
+			super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+		end
+
 	private
 		def post_params
 			params.require(:post).permit(:link,:title)

@@ -4,10 +4,17 @@ angular.module('flapperNews')
 	      posts: []
 	    };
 
-	     o.getAll = function() {
+	    o.create = function(post){
+	    	return $http.post('/posts.json',post).success(function(data){
+	    		o.posts.push(data)
+	    	});
+	    }
+
+	    o.getAll = function() {
     		return $http.get('/posts.json').success(function(data){
-      			angular.copy(data, o.posts);
-    		});
-  		};
-	    return o;
-	}]);
+  			angular.copy(data, o.posts);
+		});
+  	};
+
+	return o;
+}]);
