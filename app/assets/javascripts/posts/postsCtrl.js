@@ -5,8 +5,8 @@ angular.module('flapperNews')
 	    'post',
 	    function($scope,posts,post){
 	      $scope.post = post;
-	      $scope.incrementUpvotes = function(post){
-	          post.upvotes += 1
+	      $scope.incrementUpvotes = function(comment){
+	          posts.upvoteComment(post,comment);
 	      }
 
 	      $scope.addComment = function(){
